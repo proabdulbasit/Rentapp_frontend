@@ -1,7 +1,8 @@
-@import "../../../responsive.scss";
+@import "../../responsive.scss";
+
 .searchBar {
   form {
-    border: 1px solid #999;
+    border: 1px solid gray;
     display: flex;
     justify-content: space-between;
     height: 64px;
@@ -34,7 +35,7 @@
         &:nth-child(2),
         &::nth-child(3) {
           width: 200px;
-          border-radius: 0px;
+          border-radius: 10px;
         }
       }
       @include sm{
@@ -44,8 +45,8 @@
           width: auto;
           border-radius: 0px;
         }
-        padding: 20px;
-        border: 1px solid #999;
+        // padding: 20px;
+        // border: 1px solid #999;
       }
     }
 
