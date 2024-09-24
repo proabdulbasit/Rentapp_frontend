@@ -55,7 +55,9 @@ function Profile() {
 
           <div className="title">
             <h1>Mis Cuartos</h1>
+            <Link to="/add">
             <button>Crear Nuevo Cuarto</button>
+            </Link>
           </div>
           <List />
           <div className="title">

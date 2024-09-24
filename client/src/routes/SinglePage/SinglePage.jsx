@@ -30,13 +30,13 @@ function SinglePage() {
       </div>
       <div className="features">
         <div className="wrapper">
-          <p className="title">General</p>
+          <p className="title">Informacion General</p>
           <div className="listVertical">
             <div className="feature">
-              <img src="/utility.png" alt="" />
+              <img src="/meeting.png" alt="" />
               <div className="featureText">
-                <span>Utilidades</span>
-                <p>Rentero es responsable</p>
+                <span>Reuniones</span>
+                <p>Permitidas</p>
               </div>
             </div>
             <div className="feature">
@@ -54,41 +54,41 @@ function SinglePage() {
               </div>
             </div>
           </div>
-          <p className="title">Tamano</p>
-          <div className="sizes">
-            <div className="size">
-              <img src="/size.png" alt="" />
-              <span>80 sqm</span>
+          <p className="title"></p>
+          <div className="infos">
+            <div className="info">
+              <img src="/wifi.png" alt="" />
+              <span>100mb</span>
             </div>
-            <div className="size">
+            <div className="info">
               <img src="/bed.png" alt="" />
-              <span>2 bed</span>
+              <span>King Size</span>
             </div>
-            <div className="size">
+            <div className="info">
               <img src="/bath.png" alt="" />
-              <span>1 bat</span>
+              <span>Privado</span>
             </div>
           </div>
           <p className="title">Lugares Cercanos</p>
           <div className="listHorizontal">
             <div className="feature">
-              <img src="school.png" alt="" />
+              <img src="/school.png" alt="" />
               <div className="featureText">
                 <span>Escuela</span>
                 <p>250m</p>
               </div>
             </div>
             <div className="feature">
-              <img src="pet.png" alt="" />
+              <img src="/bus.png" alt="" />
               <div className="featureText">
-                <span>Parada camion</span>
+                <span>Transporte Publico</span>
                 <p>100m</p>
               </div>
             </div>
             <div className="feature">
-              <img src="fee.png" alt="" />
+              <img src="/store.png" alt="" />
               <div className="featureText">
-                <span>Restaurantes</span>
+                <span>Super Mercado</span>
                 <p>200m</p>
               </div>
             </div>

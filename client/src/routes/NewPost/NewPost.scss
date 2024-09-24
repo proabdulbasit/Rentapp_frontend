@@ -1,6 +1,7 @@
 .newPost {
     height: 100%;
     display: flex;
+    padding-bottom: 50px;
   
     .formContainer {
       flex: 3;
@@ -46,12 +47,14 @@
           }
           .sendButton {
             width: 30%;
-            border-radius: 5px;
+            height: 40px;
+            border-radius: 10px;
             border: none;
-            background-color: teal;
+            background-color: #FFA9DE;
             color: white;
             font-weight: bold;
             cursor: pointer;
+            flex: 1;
           }
         }
       }

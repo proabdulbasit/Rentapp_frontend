@@ -137,14 +137,19 @@
                 img{
                     background-color:#ffa9de7c;
                     border-radius: 10px;
+                    padding: 1px;
+                   
+                    height: 30px;
+                    width: 30px;
                 }
 
                 .featureText{
                     span{
-                        font-weight: bold;
+                        font-weight:bold;
+                        font-size: 14px;
                     }
                     p{
-                        font-size: 14px;  
+                        font-size: 13px;  
                     }
                 }
             }
@@ -158,7 +163,7 @@
                 background-color:#8feaff77;
             }
 
-            .sizes{
+            .infos{
                 justify-content: space-between;
                 display: flex;
                 background-color:#8feaff77;
@@ -168,7 +173,7 @@
                     font-size: 12px;
                 }
 
-                .size{
+                .info{
                     display: flex;
                     align-items: center;
                     gap: 10px;
@@ -177,6 +182,9 @@
                     img{
                         background-color:#ffa9de7c;
                         border-radius: 10px;
+                        padding: 1px;
+                        width: 30px;
+                        height: 30px;
                     }
                 }
             }

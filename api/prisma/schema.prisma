@@ -13,6 +13,68 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Post {
+  id         String      @id @default(auto()) @map("_id") @db.ObjectId
+  title      String
+  price      Int
+  images     String[]
+  address    String
+  city       String
+  internet   Int
+  bedroom    BedType
+  bathroom   SharedBath
+  latitude   String
+  longitude  String
+  type       Type
+  createdAt  DateTime    @default(now())
+  user       User        @relation(fields: [userId], references: [id])
+  userId     String      @db.ObjectId
+  postDetail PostDetail?
+  savedPosts SavedPost[]
+}
+
+enum Type {
+  Mixto
+  Hombres
+  Mujeres
+}
+
+enum SharedBath {
+  Privado
+  Compartido
+}
+
+enum BedType {
+  Individual
+  Matrimonial
+  QueenSize
+  KingSize
+}
+
+model PostDetail {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  description String
+  meetings    String
+  pet         String
+  services    String
+  school      Int?
+  bus         Int?
+  store       Int?
+  post        Post   @relation(fields: [postId], references: [id])
+  postId      String @unique @db.ObjectId
+}
+
+model SavedPost {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  user      User     @relation(fields: [userId], references: [id])
+  post      Post     @relation(fields: [postId], references: [id])
+  userId    String   @unique @db.ObjectId
+  postId    String   @unique @db.ObjectId
+  createdAt DateTime @default(now())
+
+  @@unique([userId, postId])
+}
+
 model User {
   id         String      @id @default(auto()) @map("_id") @db.ObjectId
   email      String      @unique
@@ -20,4 +82,6 @@ model User {
   password   String
   avatar     String?
   createdAt  DateTime    @default(now())
+  posts      Post[]
+  savedPosts SavedPost[]
 }
