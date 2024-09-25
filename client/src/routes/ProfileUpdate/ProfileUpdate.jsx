@@ -8,7 +8,7 @@ import UploadWidget from "../../components/UploadImages/UploadImages";
 function ProfileUpdate() {
   const { currentUser, updateUser } = useContext(AuthContext);
   const [error, setError] = useState("");
-  const [avatar, setAvatar] = useState(currentUser.avatar);
+  const [avatar, setAvatar] = useState([]);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -22,7 +22,7 @@ function ProfileUpdate() {
         username,
         email,
         password,
-        avatar
+        avatar: avatar[0],
       });
       updateUser(res.data);
       navigate("/profile");
@@ -64,7 +64,7 @@ function ProfileUpdate() {
         </form>
       </div>
       <div className="right">
-        <img src={avatar || "/noavatar.png"} alt="" className="avatar" />
+        <img src={avatar[0] || currentUser.avatar || "/noavatar.png"} alt="" className="avatar" />
         <UploadWidget
           uwConfig={{
             cloudName: "rentappweb",
@@ -73,7 +73,7 @@ function ProfileUpdate() {
             maxImageFileSize: 2000000,
             folder: "avatars",
           }}
-          setAvatar= { setAvatar}
+          setState={setAvatar}
         />
       </div>
     </div>

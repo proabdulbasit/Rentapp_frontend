@@ -1,8 +1,21 @@
 import prisma from "../lib/prisma.js";
 
 export const getPosts = async (req, res) => {
+  const query = req.query;
+  console.log(query)
   try {
-    const posts = await prisma.post.findMany();
+    const posts = await prisma.post.findMany({
+      where:{
+        type: query.type || undefined,
+        pet: query.pet || undefined,
+        bathType: query.bathType || undefined,
+        price:{
+          gte: parseInt(query.minPrice) || 0,
+          lte: parseInt(query.maxPrice) || 10000000,
+        }
+        
+      }
+    });
     res.status(200).json(posts);
   } catch (err) {
     console.log(err);
@@ -34,13 +47,13 @@ export const getPost = async (req, res) => {
 
 export const addPost = async (req, res) => {
   const body = req.body;
-  const tokenUser = req.userId;
+  const tokenUserId = req.userId;
 
   try {
     const newPost = await prisma.post.create({
       data: {
         ...body.postData,
-        userId: tokenUser,
+        userId: tokenUserId,
         postDetail: {
           create: body.postDetail,
         },

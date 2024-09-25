@@ -2,29 +2,43 @@ import Slider from "../../components/Slider/Slider";
 import "./SinglePage.scss";
 import { singlePostData, userData } from "../../lib/dummydata";
 import Map from "../../components/Map/Map";
+import { useLoaderData } from "react-router-dom";
+import DOMPurify from "dompurify";
+
+function modifiedStr(str) {
+  let modifiedStr = str.replace(/-/g, " ");
+  return modifiedStr.charAt(0).toUpperCase() + modifiedStr.slice(1);
+}
 
 function SinglePage() {
+  const post = useLoaderData();
+
   return (
     <div className="singlePage">
       <div className="details">
         <div className="wrapper">
-          <Slider images={singlePostData.images} />
+          <Slider images={post.images} />
           <div className="info">
             <div className="top">
               <div className="post">
-                <h1>{singlePostData.title}</h1>
+                <h1>{modifiedStr(post.title)}</h1>
                 <div className="address">
                   <img src="/pin.png" alt="" />
-                  <span>{singlePostData.address}</span>
+                  <span>{modifiedStr(post.address)}</span>
                 </div>
-                <div className="price">$ {singlePostData.price}</div>
+                <div className="price">$ {post.price}</div>
               </div>
               <div className="user">
-                <img src={userData.img} alt="" />
-                <span>{userData.name}</span>
+                <img src={post.user.avatar} alt="" />
+                <span>{post.user.username}</span>
               </div>
             </div>
-            <div className="bottom">{singlePostData.description}</div>
+            <div
+              className="bottom"
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(post.postDetail.description),
+              }}
+            ></div>
           </div>
         </div>
       </div>
@@ -36,21 +50,21 @@ function SinglePage() {
               <img src="/meeting.png" alt="" />
               <div className="featureText">
                 <span>Reuniones</span>
-                <p>Permitidas</p>
+                <p>{modifiedStr(post.postDetail.meetings)}</p>
               </div>
             </div>
             <div className="feature">
               <img src="/pet.png" alt="" />
               <div className="featureText">
                 <span>Politica mascotas</span>
-                <p>Mascotas permitidas</p>
+                <p>{modifiedStr(post.postDetail.pet)}</p>
               </div>
             </div>
             <div className="feature">
               <img src="/fee.png" alt="" />
               <div className="featureText">
-                <span>Gastos</span>
-                <p>Servicios incluidos</p>
+                <span>Servicios Incluidos</span>
+                <p>{modifiedStr(post.postDetail.services)}</p>
               </div>
             </div>
           </div>
@@ -58,15 +72,15 @@ function SinglePage() {
           <div className="infos">
             <div className="info">
               <img src="/wifi.png" alt="" />
-              <span>100mb</span>
+              <span>{post.postDetail.wifi}</span>
             </div>
             <div className="info">
               <img src="/bed.png" alt="" />
-              <span>King Size</span>
+              <span>{modifiedStr(post.bedType)}</span>
             </div>
             <div className="info">
               <img src="/bath.png" alt="" />
-              <span>Privado</span>
+              <span>{modifiedStr(post.bathType)}</span>
             </div>
           </div>
           <p className="title">Lugares Cercanos</p>
@@ -75,27 +89,27 @@ function SinglePage() {
               <img src="/school.png" alt="" />
               <div className="featureText">
                 <span>Escuela</span>
-                <p>250m</p>
+                <p>{post.postDetail.school} m</p>
               </div>
             </div>
             <div className="feature">
               <img src="/bus.png" alt="" />
               <div className="featureText">
                 <span>Transporte Publico</span>
-                <p>100m</p>
+                <p>{post.postDetail.bus} m</p>
               </div>
             </div>
             <div className="feature">
               <img src="/store.png" alt="" />
               <div className="featureText">
                 <span>Super Mercado</span>
-                <p>200m</p>
+                <p>{post.postDetail.store} m</p>
               </div>
             </div>
           </div>
           <p className="title">Ubicacion</p>
           <div className="mapContainer">
-            <Map items={[singlePostData]} />
+            <Map items={[post]} />
           </div>
           <div className="buttons">
             <button>
