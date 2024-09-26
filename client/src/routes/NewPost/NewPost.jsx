@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./newPost.scss";
+import "./NewPost.scss";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import ApiRequest from "../../lib/ApiRequest";
