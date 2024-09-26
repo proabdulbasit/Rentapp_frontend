@@ -1,9 +1,11 @@
 import Slider from "../../components/Slider/Slider";
 import "./SinglePage.scss";
-import { singlePostData, userData } from "../../lib/dummydata";
 import Map from "../../components/Map/Map";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import DOMPurify from "dompurify";
+import { useContext, useState } from "react";
+import ApiRequest from "../../lib/ApiRequest";
+import { AuthContext } from "../../context/AuthContext";
 
 function modifiedStr(str) {
   let modifiedStr = str.replace(/-/g, " ");
@@ -12,6 +14,22 @@ function modifiedStr(str) {
 
 function SinglePage() {
   const post = useLoaderData();
+  const [saved, setSaved] = useState(post.isSaved);
+  const { currentUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleSave = async () => {
+    if (!currentUser) {
+      navigate("/login");
+    }
+    setSaved((prev) => !prev);
+    try {
+      await ApiRequest.post("/users/save", { postId: post.id });
+    } catch (err) {
+      console.log(err);
+      setSaved((prev) => !prev);
+    }
+  };
 
   return (
     <div className="singlePage">
@@ -116,9 +134,14 @@ function SinglePage() {
               <img src="/chat.png" alt="" />
               Contacta
             </button>
-            <button>
+            <button
+              onClick={handleSave}
+              style={{
+                backgroundColor: saved ? "#FFA9DE" : "#8FEBFF",
+              }}
+            >
               <img src="/save.png" alt="" />
-              Guardar
+              {saved ? "Habitacion guardada" : "Guarda la habitacion"}
             </button>
           </div>
         </div>

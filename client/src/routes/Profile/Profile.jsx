@@ -2,19 +2,14 @@ import List from "../../components/List/List";
 import Map from "../../components/Map/Map";
 import "./Profile.scss";
 import ApiRequest from "../../lib/ApiRequest";
-import { Link, useNavigate } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import { Await, Link, useLoaderData, useNavigate } from "react-router-dom";
+import { Suspense, useContext, useEffect } from "react";
 import {AuthContext} from '../../context/AuthContext'
 
 function Profile() {
   const {updateUser, currentUser} = useContext(AuthContext)
   const navigate = useNavigate()
-
-  // useEffect(() => {
-  //   if(!currentUser){
-  //     navigate('/login')
-  //   }
-  // },[currentUser, navigate])
+  const data = useLoaderData();
 
   const handleLogout = async () => {
     try {
@@ -59,11 +54,25 @@ function Profile() {
             <button>Crear Nuevo Cuarto</button>
             </Link>
           </div>
-          <List />
+          <Suspense fallback={<p>Cargando...</p>}>
+            <Await
+              resolve={data.postResponse}
+              errorElement={<p>Error cargando habitaciones!</p>}
+            >
+              {(postResponse) => <List posts={postResponse.data.userPosts} />}
+            </Await>
+          </Suspense>
           <div className="title">
             <h1>Mis Favoritos</h1>
           </div>
-          <List />
+          <Suspense fallback={<p>Cargando...</p>}>
+            <Await
+              resolve={data.postResponse}
+              errorElement={<p>Error cargando habitaciones!</p>}
+            >
+              {(postResponse) => <List posts={postResponse.data.savedPosts} />}
+            </Await>
+          </Suspense>
         </div>
       </div>
     </div>

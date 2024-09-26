@@ -1,4 +1,3 @@
-import { listData } from '../../lib/dummydata'
 import Card from '../Card/Card'
 import './List.scss'
 
