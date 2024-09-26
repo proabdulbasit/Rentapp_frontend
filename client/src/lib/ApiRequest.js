@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const ApiRequest = axios.create({
-  baseURL: "http://localhost:8800/api",
+  baseURL: process.env.API_URL,
   withCredentials: true,
 });
 
