@@ -25,7 +25,6 @@
 // app.listen(8800, () => {
 //     console.log("server is running")
 // });
-
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
@@ -53,9 +52,21 @@ app.use(cors({
     }
   },
   credentials: true, // Habilitar envío de cookies/credenciales
-  methods: 'GET,POST,PUT,DELETE,OPTIONS', // Métodos permitidos
-  allowedHeaders: 'Origin,X-Requested-With,Content-Type,Accept,Authorization', // Encabezados permitidos
+  methods: 'GET, POST, PUT, DELETE, OPTIONS', // Métodos permitidos
+  allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept, Authorization', // Encabezados permitidos
 }));
+
+// Middleware para manejar solicitudes preflight (`OPTIONS`)
+app.use((req, res, next) => {
+  if (req.method === 'OPTIONS') {
+    res.header('Access-Control-Allow-Origin', allowedOrigins);
+    res.header('Access-Control-Allow-Credentials', 'true');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+    return res.sendStatus(200);  // Responder exitosamente a las solicitudes preflight
+  }
+  next();
+});
 
 app.use(express.json());
 app.use(cookieParser());
