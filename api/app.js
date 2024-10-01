@@ -35,10 +35,11 @@ import userRoute from './routes/user.route.js';
 
 const app = express();
 
-// Lista de orígenes permitidos (puedes agregar más si es necesario)
+// Lista de orígenes permitidos
 const allowedOrigins = [
   'https://rentapp-final-j2ac.vercel.app',  // Frontend en producción
-  'http://localhost:5173'  // Para desarrollo local
+  'http://localhost:5173',  // Para desarrollo local
+  'https://rentapp-final.vercel.app'  // Backend en producción
 ];
 
 // Configuración de CORS para manejar múltiples orígenes
