@@ -65,6 +65,7 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
     return res.sendStatus(200);  // Responder exitosamente a las solicitudes preflight
   }
+  console.log(res)
   next();
 });
 
