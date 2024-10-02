@@ -39,7 +39,7 @@ const app = express();
 const allowedOrigins = [
   'https://rentapp-final-j2ac.vercel.app',  // Frontend en producción
   'http://localhost:5173',  // Para desarrollo local
-  'https://vercel.com/alan-arriagas-projects/rentapp-final-and9/7P5RURsU3RHtNHwpEFZxQikWyKnB/api'  // Backend en producción
+  'https://rentapp-final-and9.vercel.app/api'  // Backend en producción
 ];
 
 // Configuración de CORS para manejar múltiples orígenes
