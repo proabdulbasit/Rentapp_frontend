@@ -39,7 +39,7 @@ const app = express();
 const allowedOrigins = [
   'https://rentapp-final-j2ac.vercel.app',  // Frontend en producción
   'http://localhost:5173',  // Para desarrollo local
-  'https://rentapp-final-and9.vercel.app/api'  // Backend en producción
+  'https://rentapp-final-j2ac-i11ita8fr-alan-arriagas-projects.vercel.app'  // Frontend en producción
 ];
 
 // Configuración de CORS para manejar múltiples orígenes
@@ -54,7 +54,7 @@ app.use(cors({
   },
   credentials: true, // Habilitar envío de cookies/credenciales
   methods: 'GET, POST, PUT, DELETE, OPTIONS', // Métodos permitidos
-  allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept, Authorization', // Encabezados permitidos
+  allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept, Authorization' // Encabezados permitidos
 }));
 
 // Middleware para manejar solicitudes preflight (`OPTIONS`)
