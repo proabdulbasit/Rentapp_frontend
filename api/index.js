@@ -41,7 +41,6 @@ const allowedOrigins = [
   "http://localhost:5173", // Para desarrollo local
   "https://rentapp-final-j2ac-i11ita8fr-alan-arriagas-projects.vercel.app", // Frontend en producción
   "https://rentapp-final-and9.vercel.app",
-  "https://rentapp-final-and9.vercel.app/api",
 ];
 
 // Configuración de CORS para manejar múltiples orígenes
