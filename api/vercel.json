@@ -2,9 +2,16 @@
     "version": 2,
     "name": "node-js",
     "builds": [
-        {"src": "app.js", "use": "@vercel/node"}
+      {"src": "app.js", "use": "@vercel/node"}
     ],
     "routes": [
-        {"src": "/(.*)", "dest": "/"}
+      {"src": "/(.*)", "dest": "/"}
+    ],
+    "middleware": [
+      {
+        "src": "/api/*",
+        "dest": "/api/*",
+        "middleware": "cors"
+      }
     ]
-}
+  }
