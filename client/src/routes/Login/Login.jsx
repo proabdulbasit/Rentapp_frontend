@@ -24,6 +24,9 @@ function Login() {
         username,
         password,
       });
+
+      console.log("Token recibido:", res.data.token); // Asegúrate de que el token esté en la respuesta
+
       updateUser(res.data); // Actualizar el estado del usuario
       navigate("/"); // Redirigir al usuario a la página principal
     } catch (err) {
