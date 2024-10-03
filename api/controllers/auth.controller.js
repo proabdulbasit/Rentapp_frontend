@@ -66,7 +66,7 @@ export const login = async (req, res) => {
         sameSite: "None"
       })
       .status(200)
-      .json(userInfo);
+      .json({ token, ...userInfo }); // Incluir el token en la respuesta
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Error al iniciar sesion!" });
