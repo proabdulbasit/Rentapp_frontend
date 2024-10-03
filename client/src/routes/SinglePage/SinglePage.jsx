@@ -130,7 +130,7 @@ function SinglePage() {
             <Map items={[post]} />
           </div>
           <div className="buttons">
-            <button>
+            <button onClick={() => (window.location.href = `mailto:${post.user.email}`)}>
               <img src="/chat.png" alt="" />
               Contacta
             </button>
