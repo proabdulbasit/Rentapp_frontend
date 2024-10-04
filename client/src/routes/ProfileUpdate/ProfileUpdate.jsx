@@ -18,13 +18,16 @@ function ProfileUpdate() {
     const { username, email, password } = Object.fromEntries(formData);
 
     try {
+
       const res = await ApiRequest.put(`/users/${currentUser.id}`, {
         username,
         email,
         password,
         avatar: avatar[0],
       });
-      updateUser(res.data);
+      const user = JSON.parse(localStorage.getItem('user'));
+
+      updateUser({...res.data,token:user.token });
       navigate("/profile");
     } catch (err) {
       console.log(err);

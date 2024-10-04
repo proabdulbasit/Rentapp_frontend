@@ -36,36 +36,10 @@ import userRoute from "./routes/user.route.js";
 const app = express();
 
 // Allow all origins and methods with CORS
-app.use(
-  cors({
-    origin: "*", // Allow any origin
-    credentials: true, // Enable credentials (cookies, etc.)
-    methods: "GET, POST, PUT, DELETE, OPTIONS", // Allowed methods
-    allowedHeaders: "Origin, X-Requested-With, Content-Type, Accept, Authorization", // Allowed headers
-  })
-);
+app.use(cors({ origin: true, credentials: true }));
 
 
-// Middleware para manejar solicitudes preflight (`OPTIONS`)
-app.use((req, res, next) => {
-  if (req.method === "OPTIONS") {
-    const origin = req.headers.origin;
-    if (allowedOrigins.includes(origin)) {
-      res.header("Access-Control-Allow-Origin", origin);
-    }
-    res.header("Access-Control-Allow-Credentials", "true");
-    res.header(
-      "Access-Control-Allow-Methods",
-      "GET, POST, PUT, DELETE, OPTIONS"
-    );
-    res.header(
-      "Access-Control-Allow-Headers",
-      "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-    );
-    return res.sendStatus(200); // Responder exitosamente a las solicitudes preflight
-  }
-  next();
-});
+
 
 app.use(express.json());
 app.use(cookieParser());
